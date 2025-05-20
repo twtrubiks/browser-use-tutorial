@@ -9,9 +9,9 @@ from pydantic import SecretStr
 
 load_dotenv()
 
-api_key = os.getenv('GEMINI_API_KEY')
+api_key = os.getenv('GOOGLE_API_KEY')
 if not api_key:
-    raise ValueError('GEMINI_API_KEY is not set')
+    raise ValueError('GOOGLE_API_KEY is not set')
 
 browser = Browser(
 	config=BrowserConfig(
@@ -23,8 +23,14 @@ browser = Browser(
 
 async def main():
     agent = Agent(
-        task='go to https://captcha.com/demos/features/captcha-demo.aspx and solve the captcha',
+        task='到 https://captcha.com/demos/features/captcha-demo.aspx 解決驗證碼, 成功代表完成任務',
+
+        # 效果比較好
+        # llm=ChatGoogleGenerativeAI(model="gemini-2.5-pro-preview-05-06", api_key=SecretStr(api_key)),
+
+        # 效果比較差
         llm=ChatGoogleGenerativeAI(model="gemini-2.0-flash-exp", api_key=SecretStr(api_key)),
+
         browser=browser,
     )
 

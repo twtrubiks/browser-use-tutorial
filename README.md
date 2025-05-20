@@ -60,6 +60,40 @@ pip install browser-use
 pip install langchain-google-genai
 ```
 
+其他的 model 設定可參考這邊 [examples/models](https://github.com/browser-use/browser-use/tree/main/examples/models)
+
+
+如果需要記憶功能, 可安裝
+
+```cmd
+pip install "browser-use[memory]"
+```
+
+### CLI 版本
+
+```cmd
+pip install "browser-use[cli]"
+```
+
+記得要設定環境變數
+
+```cmd
+export GOOGLE_API_KEY=xxxx
+echo $GOOGLE_API_KEY
+```
+
+移除環境變數
+
+```cmd
+unset GOOGLE_API_KEY
+```
+
+接著直接執行
+
+```cmd
+browser-use
+```
+
 如果你要用其他的 大語言模型, 可參考 [examples/models](https://github.com/browser-use/browser-use/tree/main/examples/models)
 
 這裡提供很多, 連 [Ollama 簡介 🤖](https://github.com/twtrubiks/dify-ollama-docker-tutorial/blob/main/ollama.md) 也有.
@@ -67,7 +101,7 @@ pip install langchain-google-genai
 安裝 Playwright
 
 ```cmd
-playwright install chromium
+playwright install chromium --with-deps --no-shell
 ```
 
 之前有介紹過 [docker-selenium-tutorial](https://github.com/twtrubiks/docker-selenium-tutorial), 差異如下
@@ -97,6 +131,12 @@ playwright install chromium
 
 解決驗證碼也可以 [demo-captcha.py](demo-captcha.py) `python3 demo-captcha.py`
 
+這邊我測試的結果是用越強的 model 正確機率越高
+
+`gemini-2.5-pro-preview-05-06` -> 正確機率越高
+
+`gemini-2.0-flash-exp` -> 正確機率低
+
 如果你想看其他的範例, 可參考 [examples](https://github.com/browser-use/browser-use/tree/main/examples)
 
 你會發現幾乎可以辦法任何事情.
@@ -117,6 +157,10 @@ BrowserContext.add_cookies: cookies[9].sameSite: expected one of (Strict|Lax|Non
 ```
 
 [twitter_post_using_cookies.py](twitter_post_using_cookies.py) `python3 twitter_post_using_cookies.py`
+
+### 整合 streamlit
+
+也有整合 streamlit, [streamlit_demo.py](demo-captcha.py) `python3 -m streamlit run streamlit_demo.py`
 
 ## Donation
 
