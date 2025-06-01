@@ -62,11 +62,19 @@ pip install langchain-google-genai
 
 其他的 model 設定可參考這邊 [examples/models](https://github.com/browser-use/browser-use/tree/main/examples/models)
 
-
 如果需要記憶功能, 可安裝
 
 ```cmd
 pip install "browser-use[memory]"
+```
+
+預設會啟用記憶, 如果你安裝了, 不需要記憶就設定 `enable_memory=False`
+
+```python
+agent = Agent(
+    enable_memory=False,
+    ...
+)
 ```
 
 ### CLI 版本
@@ -161,6 +169,20 @@ BrowserContext.add_cookies: cookies[9].sameSite: expected one of (Strict|Lax|Non
 ### 整合 streamlit
 
 也有整合 streamlit, [streamlit_demo.py](demo-captcha.py) `python3 -m streamlit run streamlit_demo.py`
+
+### 下載檔案
+
+[download_file.py](download_file.py) 也可以下載檔案
+
+### 抓取 ptt 表特板圖片
+
+[crawler_ptt.py](crawler_ptt.py) 這個範例有自定義輸出格式.
+
+### 使用 ollama
+
+不需要填入 key, 但是要設定你的 `OLLAMA_HOST`
+
+[ollama_demo.py](ollama_demo.py)
 
 ## Donation
 
