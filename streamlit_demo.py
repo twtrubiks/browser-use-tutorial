@@ -18,7 +18,7 @@ load_dotenv()
 import streamlit as st
 
 from browser_use import Agent
-from browser_use.browser.browser import Browser, BrowserConfig
+from browser_use.browser import BrowserSession
 from browser_use.controller.service import Controller
 
 
@@ -37,13 +37,13 @@ if not api_key:
 def initialize_agent(query: str):
 	llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash-exp", api_key=SecretStr(api_key))
 	controller = Controller()
-	browser = Browser(config=BrowserConfig())
+	browser_session = BrowserSession()
 
 	return Agent(
 		task=query,
 		controller=controller,
 		llm=llm,
-		browser=browser,
+		browser_session=browser_session,
 		use_vision=True,
 		max_actions_per_step=1,
 	)
